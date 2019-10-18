@@ -18,11 +18,21 @@ namespace biquadratic
             Console.WriteLine("Решаем биквадраные уравнения\n");
             Console.ResetColor();
             int stop = 0;
+            double a, b, c;
             do
             {
-                double a = toDoubleCase("Введите коэффициент а: ");
-                double b = toDoubleCase("Введите коэффициент b: ");
-                double c = toDoubleCase("Введите коэффициент c: ");
+                if(args.Length == 3) //использование аргументов командной строки
+                {
+                    double.TryParse(args[0], out a);
+                    double.TryParse(args[2], out b);
+                    double.TryParse(args[3], out c);
+                    Array.Resize(ref args, 0); 
+                } else
+                {
+                    a = toDoubleCase("Введите коэффициент а: ");
+                    b = toDoubleCase("Введите коэффициент b: ");
+                    c = toDoubleCase("Введите коэффициент c: ");
+                }
                 if (a == 0 && b == 0 && c == 0) //коэфициенты А и Б и Цэ равны нулю
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -195,35 +205,35 @@ namespace biquadratic
             return doubleCase;
         }
 
-        static double toDoubleCase1(string cout)
-        {
-            double doubleCase = -111111;
-            string inputCase;
-            bool stop = false;
+        //static double toDoubleCase1(string cout)
+        //{
+        //    double doubleCase = -111111;
+        //    string inputCase;
+        //    bool stop = false;
 
-            do
-            {
-                Console.WriteLine(cout);
-                inputCase = Console.ReadLine();
+        //    do
+        //    {
+        //        Console.WriteLine(cout);
+        //        inputCase = Console.ReadLine();
 
-                try
-                {
-                    doubleCase = double.Parse(inputCase);
-                    //stop = double.TryParse(inputCase, out doubleCase);
-                }
-                catch (Exception e)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nВы ввели не число: " + e.Message);
-                    Console.WriteLine("\nПодробное описание ошибки: ");
-                    Console.ResetColor();
-                    Console.WriteLine(e.StackTrace + "\n");
-                }
-                if (doubleCase != -111111) { stop = true; }
+        //        try
+        //        {
+        //            doubleCase = double.Parse(inputCase);
+        //            //stop = double.TryParse(inputCase, out doubleCase);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Console.ForegroundColor = ConsoleColor.Red;
+        //            Console.WriteLine("\nВы ввели не число: " + e.Message);
+        //            Console.WriteLine("\nПодробное описание ошибки: ");
+        //            Console.ResetColor();
+        //            Console.WriteLine(e.StackTrace + "\n");
+        //        }
+        //        if (doubleCase != -111111) { stop = true; }
 
-            } while (!stop);
+        //    } while (!stop);
 
-            return doubleCase;
-        }
+        //    return doubleCase;
+        //}
     }
 }
