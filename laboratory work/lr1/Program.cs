@@ -206,35 +206,37 @@ namespace biquadratic
             return doubleCase;
         }
 
-        //static double toDoubleCase1(string cout)
-        //{
-        //    double doubleCase = -111111;
-        //    string inputCase;
-        //    bool stop = false;
-
-        //    do
-        //    {
-        //        Console.WriteLine(cout);
-        //        inputCase = Console.ReadLine();
-
-        //        try
-        //        {
-        //            doubleCase = double.Parse(inputCase);
-        //            //stop = double.TryParse(inputCase, out doubleCase);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Console.ForegroundColor = ConsoleColor.Red;
-        //            Console.WriteLine("\nВы ввели не число: " + e.Message);
-        //            Console.WriteLine("\nПодробное описание ошибки: ");
-        //            Console.ResetColor();
-        //            Console.WriteLine(e.StackTrace + "\n");
-        //        }
-        //        if (doubleCase != -111111) { stop = true; }
-
-        //    } while (!stop);
-
-        //    return doubleCase;
-        //}
     }
 }
+
+
+//static double toDoubleCase1(string cout)
+//{
+//    double doubleCase = -111111;
+//    string inputCase;
+//    bool stop = false;
+
+//    do
+//    {
+//        Console.WriteLine(cout);
+//        inputCase = Console.ReadLine();
+
+//        try
+//        {
+//            doubleCase = double.Parse(inputCase);
+//            //stop = double.TryParse(inputCase, out doubleCase);
+//        }
+//        catch (Exception e)
+//        {
+//            Console.ForegroundColor = ConsoleColor.Red;
+//            Console.WriteLine("\nВы ввели не число: " + e.Message);
+//            Console.WriteLine("\nПодробное описание ошибки: ");
+//            Console.ResetColor();
+//            Console.WriteLine(e.StackTrace + "\n");
+//        }
+//        if (doubleCase != -111111) { stop = true; }
+
+//    } while (!stop);
+
+//    return doubleCase;
+//}
