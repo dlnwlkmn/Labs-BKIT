@@ -26,6 +26,7 @@ namespace biquadratic
                     double.TryParse(args[0], out a);
                     double.TryParse(args[1], out b);
                     double.TryParse(args[2], out c);
+                    Console.WriteLine("Аргументы командной строки: a = {0}, b = {1}, c = {2}", a, b, c);
                     Array.Resize(ref args, 0); 
                 } else
                 {
