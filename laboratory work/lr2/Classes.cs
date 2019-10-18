@@ -45,6 +45,10 @@ namespace laba2_1
         {
             return this.width * this.height;
         }
+        public override string ToString()
+        {
+            return "Прямоугольник площадью " + this.Square();
+        }
         public void Print()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -59,6 +63,10 @@ namespace laba2_1
         {
             this.Type = "Квадрат";
         }
+        public override string ToString()
+        {
+            return "Квадрат площадью " + this.Square();
+        }
     }
     class Circle : GeomFigure, IPrint
     {
@@ -71,6 +79,10 @@ namespace laba2_1
         public override double Square()
         {
             return System.Math.PI * this.radius * this.radius;
+        }
+        public override string ToString()
+        {
+            return "Круг площадью " + this.Square();
         }
         public void Print()
         {
