@@ -17,11 +17,15 @@ namespace lr3
             Console.WriteLine("Работа со списками и коллекциями C#");
             Console.ResetColor();
 
-            double[,] dimensions = new double[3, 2];
-            string str;
-            int stop;
+            // Массив для размеров фигур
+            // строки-фигуры: Прямогольник, Квадрат, Круг;
+            // столбцы-размеры: Длина, Ширина, или Длина стороны, или Радиус;
+            double[,] dimensions = new double[3, 2]; 
+            string str; // временная сточная переменная для консольного ввода
+            int stop; // флажок выхода
             do
             {
+                // блок замолнения массива размеров фигур
                 Console.WriteLine("Введите длину и ширину Прямоугольника (через Enter:)");
                 str = Console.ReadLine();
                 double.TryParse(str, out dimensions[0, 0]);
@@ -34,6 +38,7 @@ namespace lr3
                 str = Console.ReadLine();
                 double.TryParse(str, out dimensions[2, 0]);
 
+                // инициализация обьектов классов
                 Rectangle rect = new Rectangle(dimensions[0, 0], dimensions[0, 1]);
                 Squad squad = new Squad(dimensions[2, 0]);
                 Circle circ = new Circle(dimensions[1, 0]);
@@ -41,7 +46,7 @@ namespace lr3
                 squad.Print();
                 circ.Print();
 
-                // Выйти или продолжить
+                // выйти или продолжить
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\nЗавершить?");
                 Console.ResetColor();
@@ -49,9 +54,6 @@ namespace lr3
                 int.TryParse(Console.ReadLine(), out stop);
 
             } while (stop != 1);
-
-
-            Console.ReadKey();
 
         }
     }
