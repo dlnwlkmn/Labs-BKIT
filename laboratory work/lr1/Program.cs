@@ -24,8 +24,8 @@ namespace biquadratic
                 if(args.Length == 3) //использование аргументов командной строки
                 {
                     double.TryParse(args[0], out a);
-                    double.TryParse(args[2], out b);
-                    double.TryParse(args[3], out c);
+                    double.TryParse(args[1], out b);
+                    double.TryParse(args[2], out c);
                     Array.Resize(ref args, 0); 
                 } else
                 {
