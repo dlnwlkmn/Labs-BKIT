@@ -43,20 +43,17 @@ namespace lr3
                 Rectangle rect = new Rectangle(dimensions[0, 0], dimensions[0, 1]);
                 Squad squad = new Squad(dimensions[1, 0]);
                 Circle circ = new Circle(dimensions[2, 0]);
-                //rect.Print();
-                //squad.Print();
-                //circ.Print();
 
                 ArrayList arr = new ArrayList();
                 arr.Add(rect);
                 arr.Add(squad);
                 arr.Add(circ);
 
-                Console.WriteLine("\nИсходный ArrayList:");
+                ColorfulPrint("\nИсходный ArrayList:", "DarkGreen");
                 foreach (var x in arr) Console.WriteLine(x);
 
                 arr.Sort();
-                Console.WriteLine("\n\nОтсоритрованные ArrayList:");
+                ColorfulPrint("\n\nОтсоритрованные ArrayList:", "DarkGreen");
                 foreach (var x in arr) Console.WriteLine(x);
 
                 // выйти или продолжить
@@ -68,6 +65,63 @@ namespace lr3
 
             } while (stop != 1);
 
+        }
+
+        static void ColorfulPrint(string outtext, string color)
+        {
+            switch(color)
+            {
+                case "Black":
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    break;
+                case "Blue":
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case "Cyan":
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    break;
+                case "DarkBlue":
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    break;
+                case "DarkCyan":
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    break;
+                case "DarkGray":
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    break;
+                case "DarkGreen":
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    break;
+                case "DarkMagenta":
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    break;
+                case "DarkRed":
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    break;
+                case "DarkYellow":
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    break;
+                case "Gray":
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                case "Green":
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case "Magenta":
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    break;
+                case "Red":
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case "White":
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+                case "Yellow":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+            }
+            Console.WriteLine(outtext);
+            Console.ResetColor();
         }
     }
 }
