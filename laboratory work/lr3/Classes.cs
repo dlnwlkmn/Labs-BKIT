@@ -10,7 +10,7 @@ namespace lr3
     {
         void Print();
     }
-    abstract class GeomFigure
+    abstract class GeomFigure : IComparable
     {
         string type;
         public string Type
@@ -30,8 +30,18 @@ namespace lr3
         {
             return this.type + " площадью " + this.Square();
         }
+
+        public int CompareTo(object obj)
+        {
+            GeomFigure p = (GeomFigure)obj;
+
+            if (this.Square() < p.Square()) return -1;
+            else if (this.Square() == p.Square()) return 0;
+            else return 1;
+        }
+
     }
-    class Rectangle : GeomFigure, IPrint
+    class Rectangle : GeomFigure, IPrint, IComparable
     {
         double width;
         double height;
@@ -56,7 +66,7 @@ namespace lr3
             Console.ResetColor();
         }
     }
-    class Squad : Rectangle
+    class Squad : Rectangle, IComparable
     {
         public Squad(double a)
             : base(a, a)
@@ -68,7 +78,7 @@ namespace lr3
             return "Квадрат площадью " + this.Square();
         }
     }
-    class Circle : GeomFigure, IPrint
+    class Circle : GeomFigure, IPrint, IComparable
     {
         double radius;
         public Circle(double r)
