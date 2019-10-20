@@ -11,12 +11,8 @@ namespace lr3
     {
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Студент:\tСавельев Алексей");
-            Console.WriteLine("Группа:\t\tИУ5-34Б");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Работа со списками и коллекциями C#");
-            Console.ResetColor();
+            ColorfulPrint("Студент:\tСавельев Алексей\nГруппа:\t\tИУ5-34Б", "Cyan");
+            ColorfulPrint("Работа со списками и коллекциями C#", "Yellow");
 
             // Массив для размеров фигур
             // строки-фигуры: Прямогольник, Квадрат, Круг;
