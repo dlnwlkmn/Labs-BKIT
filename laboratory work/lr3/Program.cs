@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,17 +35,29 @@ namespace lr3
                 Console.WriteLine("Введите длину стороны Квадрата:");
                 str = Console.ReadLine();
                 double.TryParse(str, out dimensions[1, 0]);
-                Console.WriteLine("Введите длину стороны Квадрата:");
+                Console.WriteLine("Введите длину радиуса Круга:");
                 str = Console.ReadLine();
                 double.TryParse(str, out dimensions[2, 0]);
 
                 // инициализация обьектов классов
                 Rectangle rect = new Rectangle(dimensions[0, 0], dimensions[0, 1]);
-                Squad squad = new Squad(dimensions[2, 0]);
-                Circle circ = new Circle(dimensions[1, 0]);
-                rect.Print();
-                squad.Print();
-                circ.Print();
+                Squad squad = new Squad(dimensions[1, 0]);
+                Circle circ = new Circle(dimensions[2, 0]);
+                //rect.Print();
+                //squad.Print();
+                //circ.Print();
+
+                ArrayList arr = new ArrayList();
+                arr.Add(rect);
+                arr.Add(squad);
+                arr.Add(circ);
+
+                Console.WriteLine("\nИсходный ArrayList:");
+                foreach (var x in arr) Console.WriteLine(x);
+
+                arr.Sort();
+                Console.WriteLine("\n\nОтсоритрованные ArrayList:");
+                foreach (var x in arr) Console.WriteLine(x);
 
                 // выйти или продолжить
                 Console.ForegroundColor = ConsoleColor.Magenta;
