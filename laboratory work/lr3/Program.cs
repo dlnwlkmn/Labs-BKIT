@@ -64,6 +64,12 @@ namespace lr3
                 ColorfulPrint("\nОтсортированный List:", "DarkGreen");
                 foreach (var x in list) Console.WriteLine(x);
 
+                Matrix<GeomFigure> matrix = new Matrix<GeomFigure>(3, 3, new FigureMatrixCheckEmpty());
+                matrix[0, 0] = rect;
+                matrix[1, 1] = squad;
+                matrix[2, 2] = circ;
+                Console.WriteLine(matrix.ToString());
+
                 // выйти или продолжить
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\nЗавершить?");
