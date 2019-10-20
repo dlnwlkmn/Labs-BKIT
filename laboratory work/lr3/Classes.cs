@@ -102,4 +102,24 @@ namespace lr3
         }
 
     }
+
+    class FigureMatrixCheckEmpty : IMatrixCheckEmpty<GeomFigure>
+    {
+
+        public GeomFigure getEmptyElement()
+        {
+            return null;
+        }
+
+
+        public bool checkEmptyElement(GeomFigure element)
+        {
+            bool Result = false;
+            if (element == null)
+            {
+                Result = true;
+            }
+            return Result;
+        }
+    }
 }
