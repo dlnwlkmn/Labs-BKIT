@@ -52,6 +52,18 @@ namespace lr3
                 ColorfulPrint("\n\nОтсоритрованные ArrayList:", "DarkGreen");
                 foreach (var x in arr) Console.WriteLine(x);
 
+                List<GeomFigure> list = new List<GeomFigure>();
+                list.Add(rect);
+                list.Add(squad);
+                list.Add(circ);
+
+                ColorfulPrint("\nИсходный List:", "DarkGreen");
+                foreach (var x in list) Console.WriteLine(x);
+
+                list.Sort();
+                ColorfulPrint("\nОтсортированный List:", "DarkGreen");
+                foreach (var x in list) Console.WriteLine(x);
+
                 // выйти или продолжить
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\nЗавершить?");
