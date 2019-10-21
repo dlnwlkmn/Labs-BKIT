@@ -12,7 +12,7 @@ namespace lr3
         protected SimpleListItem<T> first = null;
 
         // последний элемент списка
-        protected SimpleListItem<T> second = null;
+        protected SimpleListItem<T> last = null;
 
         int _count;
         public int count
@@ -21,6 +21,21 @@ namespace lr3
             protected set { _count = value; }
         }
 
-        
+        // добавление элемента
+        public void Add(T element)
+        {
+            SimpleListItem<T> newItem = new SimpleListItem<T>(element);
+            this.count++;
+            if (last == null) // если список пустой, а элемент соответственно первый
+            {
+                this.first = newItem;
+                this.last = newItem;
+            }
+            else // добавляемый элемент становится поледним в списке
+            {
+                this.last.next = newItem;
+                this.last = newItem;
+            }
+        }
     }
 }
