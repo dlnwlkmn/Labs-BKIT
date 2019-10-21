@@ -70,6 +70,12 @@ namespace lr3
                 matrix[2, 2] = circ;
                 Console.WriteLine(matrix.ToString());
 
+                SimpleList<GeomFigure> sList = new SimpleList<GeomFigure>();
+                sList.Add(rect);
+                sList.Add(squad);
+                sList.Add(circ);
+                foreach(var x in sList) Console.WriteLine(x);
+
                 // выйти или продолжить
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("\nЗавершить?");

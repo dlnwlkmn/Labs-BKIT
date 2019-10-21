@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace lr3
 {
-    class SimpleList<T>
+    class SimpleList<T> : IEnumerable<T>
+        where T : IComparable
     {
         // первый элемент списка
         protected SimpleListItem<T> first = null;
@@ -35,6 +36,20 @@ namespace lr3
             {
                 this.last.next = newItem;
                 this.last = newItem;
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            SimpleListItem<T> current = this.first;
+
+            //Перебор элементов
+            while (current != null)
+            {
+                //Возврат текущего значения
+                yield return current.data;
+                //Переход к следующему элементу
+                current = current.next;
             }
         }
     }
