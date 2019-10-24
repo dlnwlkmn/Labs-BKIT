@@ -10,6 +10,7 @@ namespace biquadratic
     {
         static void Main(string[] args)
         {
+            Console.Title = "ЛР1 Савельев Алексей Александрович ИУ5-34Б";
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Студент:\tСавельев Алексей");
             Console.WriteLine("Группа:\t\tИУ5-34Б");
