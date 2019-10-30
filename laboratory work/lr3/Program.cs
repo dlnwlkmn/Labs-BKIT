@@ -74,16 +74,21 @@ namespace lr3
                 sList.Add(rect);
                 sList.Add(squad);
                 sList.Add(circ);
-                foreach(var x in sList) Console.WriteLine(x);
+                ColorfulPrint("\nИсходный SimpleList:", "DarkGreen");
+                foreach (var x in sList) Console.WriteLine(x);
+                sList.Sort();
+                ColorfulPrint("\nИсходный SimpleList:", "DarkGreen");
+                foreach (var x in sList) Console.WriteLine(x);
 
                 // выйти или продолжить
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("\nЗавершить?");
-                Console.ResetColor();
+                ColorfulPrint("\nЗавершить?", "Magenta");
                 Console.WriteLine("0) Нет\n1) Да");
                 int.TryParse(Console.ReadLine(), out stop);
 
             } while (stop != 1);
+
+            ColorfulPrint("\nКонец...", "Red");
+            Console.ReadKey();
 
         }
 
