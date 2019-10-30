@@ -96,7 +96,7 @@ namespace lr3
                     else
                     {
                         //Иначе добавить признак пустого значения
-                        b.Append(" - ");
+                        b.Append(" 0 ");
                     }
                 }
                 b.Append("]\n");

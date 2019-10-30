@@ -57,5 +57,67 @@ namespace lr3
         {
             return GetEnumerator();
         }
+
+        public SimpleListItem<T> GetItem(int number)
+        {
+            if ((number < 0) || (number >= this.count))
+            {
+                //Можно создать собственный класс исключения
+                throw new Exception("Выход за границу индекса");
+            }
+
+            SimpleListItem<T> current = this.first;
+            int i = 0;
+
+            //Пропускаем нужное количество элементов
+            while (i < number)
+            {
+                //Переход к следующему элементу
+                current = current.next;
+                //Увеличение счетчика
+                i++;
+            }
+
+            return current;
+        }
+
+        public T get(int num)
+        {
+            return GetItem(num).data;
+        }
+
+        private void swap(int i, int j)
+        {
+            SimpleListItem<T> ci = GetItem(i);
+            SimpleListItem<T> cj = GetItem(j);
+            T temp = ci.data;
+            ci.data = cj.data;
+            cj.data = temp;
+        }
+
+        public void Sort()
+        {
+            Sort(0, this.count - 1);
+        }
+
+        private void Sort(int low, int high)
+        {
+            int i = low;
+            int j = high;
+            T x = get((low + high) / 2);
+            do
+            {
+                while (get(i).CompareTo(x) < 0) ++i;
+                while (get(j).CompareTo(x) > 0) --j;
+                if (i <= j)
+                {
+                    swap(i, j);
+                    i++; j--;
+                }
+            } while (i <= j);
+
+            if (low < j) Sort(low, j);
+            if (i < high) Sort(i, high);
+        }
     }
 }
