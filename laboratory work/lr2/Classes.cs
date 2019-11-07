@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace laba2_1
 {
-    interface IPrint
+    public interface IPrint
     {
         void Print();
     }
-    abstract class GeomFigure
+    public interface IMatrixCheckEmpty<T>
+    {
+        T getEmptyElement();
+        bool checkEmptyElement(T element);
+    }
+    public abstract class GeomFigure : IComparable
     {
         string type;
         public string Type
@@ -30,8 +35,18 @@ namespace laba2_1
         {
             return this.type + " площадью " + this.Square();
         }
+
+        public int CompareTo(object obj)
+        {
+            GeomFigure p = (GeomFigure)obj;
+
+            if (this.Square() < p.Square()) return -1;
+            else if (this.Square() == p.Square()) return 0;
+            else return 1;
+        }
+
     }
-    class Rectangle : GeomFigure, IPrint
+    public class Rectangle : GeomFigure, IPrint, IComparable
     {
         double width;
         double height;
@@ -56,7 +71,7 @@ namespace laba2_1
             Console.ResetColor();
         }
     }
-    class Squad : Rectangle
+    public class Squad : Rectangle, IComparable
     {
         public Squad(double a)
             : base(a, a)
@@ -68,7 +83,7 @@ namespace laba2_1
             return "Квадрат площадью " + this.Square();
         }
     }
-    class Circle : GeomFigure, IPrint
+    public class Circle : GeomFigure, IPrint, IComparable
     {
         double radius;
         public Circle(double r)
@@ -92,4 +107,5 @@ namespace laba2_1
         }
 
     }
+    
 }
