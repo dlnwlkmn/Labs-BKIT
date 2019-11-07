@@ -86,6 +86,7 @@ namespace lr3
             StringBuilder b = new StringBuilder();
             for (int k = 0; k < this.maxZ; k++)
             {
+                b.Append("'слой' трехмерной матрицы\n");
                 for (int j = 0; j < this.maxY; j++)
                 {
                     b.Append("[");
