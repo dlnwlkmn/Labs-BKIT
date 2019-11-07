@@ -12,6 +12,7 @@ namespace lr3
     {
         static void Main(string[] args)
         {
+            Console.Title ="Лабораторная работа 3";
             ColorfulPrint("Студент:\tСавельев Алексей\nГруппа:\t\tИУ5-34Б", "Cyan");
             ColorfulPrint("Работа со списками и коллекциями C#", "Yellow");
 
