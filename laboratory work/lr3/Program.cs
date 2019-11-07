@@ -79,8 +79,22 @@ namespace lr3
                 ColorfulPrint("\nИсходный SimpleList:", "DarkGreen");
                 foreach (var x in sList) Console.WriteLine(x);
                 sList.Sort();
-                ColorfulPrint("\nИсходный SimpleList:", "DarkGreen");
+                ColorfulPrint("\nОтсортированный SimpleList:", "DarkGreen");
                 foreach (var x in sList) Console.WriteLine(x);
+
+                ColorfulPrint("\nSimpleStack:", "DarkGreen");
+                SimpleStack<GeomFigure> sStack = new SimpleStack<GeomFigure>();
+                sStack.Push(rect);
+                sStack.Push(squad);
+                sStack.Push(circ);
+
+                GeomFigure figure;
+
+                while(sStack.count > 0)
+                {
+                    figure = sStack.Pop();
+                    Console.WriteLine(figure);
+                }
 
                 // выйти или продолжить
                 ColorfulPrint("\nЗавершить?", "Magenta");
