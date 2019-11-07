@@ -42,6 +42,7 @@ namespace lr3
                 Squad squad = new Squad(dimensions[1, 0]);
                 Circle circ = new Circle(dimensions[2, 0]);
 
+                // ArrayList
                 ArrayList arr = new ArrayList();
                 arr.Add(rect);
                 arr.Add(squad);
@@ -49,11 +50,11 @@ namespace lr3
 
                 ColorfulPrint("\nИсходный ArrayList:", "DarkGreen");
                 foreach (var x in arr) Console.WriteLine(x);
-
-                arr.Sort();
+                arr.Sort(); // сортировка
                 ColorfulPrint("\n\nОтсоритрованные ArrayList:", "DarkGreen");
                 foreach (var x in arr) Console.WriteLine(x);
 
+                // Список (List)
                 List<GeomFigure> list = new List<GeomFigure>();
                 list.Add(rect);
                 list.Add(squad);
@@ -61,27 +62,33 @@ namespace lr3
 
                 ColorfulPrint("\nИсходный List:", "DarkGreen");
                 foreach (var x in list) Console.WriteLine(x);
-
-                list.Sort();
+                list.Sort(); // сортировка
                 ColorfulPrint("\nОтсортированный List:", "DarkGreen");
                 foreach (var x in list) Console.WriteLine(x);
 
+                // Трехмерная матрица
+                // печать матрицы на экран была реализована "послойно"
+                // т.е. сколько матрица имеет "в глубину", столько и будет
+                // напечатано двумерных матрицы (слоёв)
+                ColorfulPrint("\nТрехмерная матрица:", "DarkGreen");
                 Matrix<GeomFigure> matrix = new Matrix<GeomFigure>(3, 3, 3, new FigureMatrixCheckEmpty());
                 matrix[0, 0, 0] = rect;
                 matrix[1, 1, 1] = squad;
                 matrix[2, 2, 2] = circ;
                 Console.WriteLine(matrix.ToString());
 
+                // SimpleList
                 SimpleList<GeomFigure> sList = new SimpleList<GeomFigure>();
                 sList.Add(rect);
                 sList.Add(squad);
                 sList.Add(circ);
                 ColorfulPrint("\nИсходный SimpleList:", "DarkGreen");
                 foreach (var x in sList) Console.WriteLine(x);
-                sList.Sort();
+                sList.Sort(); // сортировка
                 ColorfulPrint("\nОтсортированный SimpleList:", "DarkGreen");
                 foreach (var x in sList) Console.WriteLine(x);
 
+                // SimpleStack
                 ColorfulPrint("\nSimpleStack:", "DarkGreen");
                 SimpleStack<GeomFigure> sStack = new SimpleStack<GeomFigure>();
                 sStack.Push(rect);
@@ -89,7 +96,6 @@ namespace lr3
                 sStack.Push(circ);
 
                 GeomFigure figure;
-
                 while(sStack.count > 0)
                 {
                     figure = sStack.Pop();
