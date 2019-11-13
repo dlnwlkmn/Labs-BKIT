@@ -56,8 +56,54 @@ namespace lr4_wForms
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void searchButton_Click(object sender, EventArgs e)
         {
+            string searchingWord = this.searchWord.Text.Trim();
+
+            if(WordList.Count > 0 && !string.IsNullOrWhiteSpace(searchingWord))
+            {
+                //Слово для поиска в верхнем регистре
+                string wordUpper = searchingWord.ToUpper();
+
+                //Временные результаты поиска
+                List<string> tempList = new List<string>();
+
+                Stopwatch t = new Stopwatch();
+                t.Start();
+
+                foreach (string str in WordList)
+                {
+                    if (str.ToUpper().Contains(wordUpper))
+                    {
+                        tempList.Add(str);
+                    }
+                }
+
+                t.Stop();
+                this.textBoxExactTime.Text = t.Elapsed.ToString();
+
+                this.listBoxResult.BeginUpdate();
+
+                //Очистка списка
+                this.listBoxResult.Items.Clear();
+
+                //Вывод результатов поиска 
+                foreach (string str in tempList)
+                {
+                    this.listBoxResult.Items.Add(str);
+                }
+                this.listBoxResult.EndUpdate();
+                
+                if(tempList.Count == 0)
+                {
+                    string str = ":/ искомого слова в тексте нет :/";
+                    this.listBoxResult.Items.Add(str);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать файл и ввести слово для поиска");
+            }
 
         }
     }
