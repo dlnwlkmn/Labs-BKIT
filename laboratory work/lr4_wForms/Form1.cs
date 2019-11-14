@@ -20,7 +20,7 @@ namespace lr4_wForms
         }
 
         List<string> WordList = new List<string>();
-
+        string text;
         private void loadupFileButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileOverview = new OpenFileDialog();
@@ -32,7 +32,7 @@ namespace lr4_wForms
                 time.Start();
 
                 //читаем текст из выбранного файла в строку
-                string text = File.ReadAllText(fileOverview.FileName);
+                text = File.ReadAllText(fileOverview.FileName);
 
                 //разделители слов в тексте
                 char[] separators = new char[] { ' ', '.', ',', '!', '?', '/', '\t', '\n' };
@@ -62,14 +62,14 @@ namespace lr4_wForms
 
             if(WordList.Count > 0 && !string.IsNullOrWhiteSpace(searchingWord))
             {
-                //Слово для поиска в верхнем регистре
+                // для поиска в верхнем регистре
                 string wordUpper = searchingWord.ToUpper();
 
-                //Временные результаты поиска
+                // временные результаты поиска
                 List<string> tempList = new List<string>();
 
-                Stopwatch t = new Stopwatch();
-                t.Start();
+                Stopwatch time = new Stopwatch();
+                time.Start();
 
                 foreach (string str in WordList)
                 {
@@ -79,8 +79,8 @@ namespace lr4_wForms
                     }
                 }
 
-                t.Stop();
-                this.textBoxExactTime.Text = t.Elapsed.ToString();
+                time.Stop();
+                this.textBoxExactTime.Text = time.Elapsed.ToString();
 
                 this.listBoxResult.BeginUpdate();
 
@@ -90,14 +90,15 @@ namespace lr4_wForms
                 //Вывод результатов поиска 
                 foreach (string str in tempList)
                 {
-                    this.listBoxResult.Items.Add(str);
+                    string massege = "Найденное слово: ";
+                    this.listBoxResult.Items.Add(massege+str);
                 }
                 this.listBoxResult.EndUpdate();
                 
                 if(tempList.Count == 0)
                 {
-                    string str = ":/ искомого слова в тексте нет :/";
-                    this.listBoxResult.Items.Add(str);
+                    string massege = ":/ искомого слова в тексте нет :/";
+                    this.listBoxResult.Items.Add(massege);
                 }
             }
             else
@@ -105,6 +106,13 @@ namespace lr4_wForms
                 MessageBox.Show("Необходимо выбрать файл и ввести слово для поиска");
             }
 
+        }
+
+        private void textButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                text
+            );
         }
     }
 }
