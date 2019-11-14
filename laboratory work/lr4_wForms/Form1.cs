@@ -31,10 +31,10 @@ namespace lr4_wForms
                 Stopwatch time = new Stopwatch();
                 time.Start();
 
-                //читаем текст из выбранного файла в строку
+                // читаем текст из выбранного файла в строку
                 text = File.ReadAllText(fileOverview.FileName);
 
-                //разделители слов в тексте
+                // разделители слов в тексте
                 char[] separators = new char[] { ' ', '.', ',', '!', '?', '/', '\t', '\n' };
 
                 string[] wordArray = text.Split(separators);
@@ -42,7 +42,7 @@ namespace lr4_wForms
                 foreach (string strTemp in wordArray)
                 {
                     string str = strTemp.Trim();
-                    //добавляем слово в список WordList, если его там нет
+                    // добавляем слово в список WordList, если его там нет
                     if (!WordList.Contains(str)) WordList.Add(str);
                 }
 
@@ -84,10 +84,10 @@ namespace lr4_wForms
 
                 this.listBoxResult.BeginUpdate();
 
-                //Очистка списка
+                // отчистка listBox
                 this.listBoxResult.Items.Clear();
 
-                //Вывод результатов поиска 
+                // вывод найденного слова 
                 foreach (string str in tempList)
                 {
                     string massege = "Найденное слово: ";
