@@ -111,7 +111,8 @@ namespace lr4_wForms
         private void textButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                text
+                text,
+                "Текст из файла"
             );
         }
     }
