@@ -55,11 +55,25 @@ namespace lr6_part2
             t.GetInterfaces().Contains(typeof(IComparable))
             );
         }
+        static void InvokeMemberInformation()
+        {
+            Type t = typeof(ForResearch);
+            Console.WriteLine("\nВызоваем метод:");
 
+            //Создание объекта
+            ForResearch fi = (ForResearch)t.InvokeMember(null, BindingFlags.CreateInstance, null, null, new object[] { });
+
+            //Параметры вызова метода
+            object[] parameters = new object[] { 3, 2 };
+            //Вызов метода
+            object Result = t.InvokeMember("Multiply", BindingFlags.InvokeMethod, null, fi, parameters);
+            Console.WriteLine("Multiply(3,2)={0}", Result);
+        }
         static void Main(string[] args)
         {
             AssemblyInformation();
             TypeInformation();
+            InvokeMemberInformation();
             Console.ReadKey();
         }
     }
