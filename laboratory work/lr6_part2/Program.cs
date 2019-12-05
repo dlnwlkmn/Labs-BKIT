@@ -70,6 +70,35 @@ namespace lr6_part2
             ColorfulPrint("Умножить (3,2) = " + Result, "Yellow");
 
         }
+        public static bool GetPropertyAttribute(PropertyInfo checkType, Type attributeType, out object attribute)
+        {
+            bool Result = false;
+            attribute = null;
+
+            //Поиск атрибутов с заданным типом
+            var isAttribute = checkType.GetCustomAttributes(attributeType, false);
+            if (isAttribute.Length > 0)
+            {
+                Result = true;
+                attribute = isAttribute[0];
+            }
+
+            return Result;
+        }
+        static void AttributeInfo()
+        {
+            Type t = typeof(ForResearch);
+            ColorfulPrint("\nСвойства, помеченные атрибутом: ", "Green");
+            foreach (var x in t.GetProperties())
+            {
+                object attribObj;
+                if (GetPropertyAttribute(x, typeof(UserAttribute), out attribObj))
+                {
+                    UserAttribute attrib = attribObj as UserAttribute;
+                    Console.WriteLine(x.Name + " - " + attrib.Description);
+                }
+            }
+        }
         static void Main(string[] args)
         {
             Console.Title = "Лабораторная работа 6 часть Вторая";
@@ -79,6 +108,7 @@ namespace lr6_part2
             AssemblyInformation();
             TypeInformation();
             InvokeMemberInformation();
+            AttributeInfo();
             Console.ReadKey();
         }
         static void ColorfulPrint(string outtext, string color)
