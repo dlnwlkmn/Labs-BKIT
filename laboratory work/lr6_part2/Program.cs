@@ -12,7 +12,7 @@ namespace lr6_part2
         
         static void AssemblyInformation()
         {
-            Console.WriteLine("Информация о сборке:");
+            ColorfulPrint("Информация о сборке: ", "Green");
             Assembly i = Assembly.GetExecutingAssembly();
             Console.WriteLine("Полное имя:" + i.FullName);
             Console.WriteLine("Исполняемый файл:" + i.Location);
@@ -22,30 +22,30 @@ namespace lr6_part2
             ForResearch obj = new ForResearch();
             Type t = obj.GetType();
 
-            Console.WriteLine("\nИнформация о типе:");
+            ColorfulPrint("Информация о типе: ", "Green");
             Console.WriteLine("Тип " + t.FullName + " унаследован от " + t.BaseType.FullName);
             Console.WriteLine("Пространство имен " + t.Namespace);
             Console.WriteLine("Распологается в сборке " + t.AssemblyQualifiedName);
 
-            Console.WriteLine("\nКонструкторы:");
+            ColorfulPrint("\nКонструкторы: ", "Green");
             foreach (var x in t.GetConstructors())
             {
                 Console.WriteLine(x);
             }
 
-            Console.WriteLine("\nМетоды:");
+            ColorfulPrint("\nМетоды: ", "Green");
             foreach (var x in t.GetMethods())
             {
                 Console.WriteLine(x);
             }
 
-            Console.WriteLine("\nСвойства:");
+            ColorfulPrint("\nСвойства: ", "Green");
             foreach (var x in t.GetProperties())
             {
                 Console.WriteLine(x);
             }
 
-            Console.WriteLine("\nПоля данных (public):");
+            ColorfulPrint("\nПоля данных (публичные): ", "Green");
             foreach (var x in t.GetFields())
             {
                 Console.WriteLine(x);
@@ -58,7 +58,7 @@ namespace lr6_part2
         static void InvokeMemberInformation()
         {
             Type t = typeof(ForResearch);
-            Console.WriteLine("\nВызоваем метод:");
+            ColorfulPrint("\nВызываем метод: ", "Green");
 
             //Создание объекта
             ForResearch fi = (ForResearch)t.InvokeMember(null, BindingFlags.CreateInstance, null, null, new object[] { });
@@ -67,10 +67,15 @@ namespace lr6_part2
             object[] parameters = new object[] { 3, 2 };
             //Вызов метода
             object Result = t.InvokeMember("Multiply", BindingFlags.InvokeMethod, null, fi, parameters);
-            Console.WriteLine("Multiply(3,2)={0}", Result);
+            ColorfulPrint("Умножить (3,2) = " + Result, "Yellow");
+
         }
         static void Main(string[] args)
         {
+            Console.Title = "Лабораторная работа 6 часть Вторая";
+            ColorfulPrint("Студент:\tСавельев Алексей\nГруппа:\t\tИУ5-34Б", "Cyan");
+            ColorfulPrint("Работа с Рефлексией в C#\n", "Yellow");
+
             AssemblyInformation();
             TypeInformation();
             InvokeMemberInformation();
