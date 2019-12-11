@@ -185,7 +185,7 @@
             this.label6.Size = new System.Drawing.Size(153, 25);
             this.label6.TabIndex = 13;
             this.label6.Text = "Модификация";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+
             // 
             // checkBox1
             // 
@@ -242,7 +242,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Чтение файла, поиск слов";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

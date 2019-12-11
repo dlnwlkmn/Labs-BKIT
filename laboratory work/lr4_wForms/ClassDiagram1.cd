@@ -10,7 +10,7 @@
   <Class Name="lr4_wForms.Form1">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAIAACAAABAAAACQAADCCAACwAAIAQEAAAIAAAA=</HashCode>
+      <HashCode>AAAIAAIAACAAABAAAACQAADCKAACwAAIAQEAAAMAAAA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>

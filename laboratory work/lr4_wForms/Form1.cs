@@ -186,15 +186,5 @@ namespace lr4_wForms
                 );
             }
         }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
