@@ -41,6 +41,10 @@
             this.textBoxExactTime = new System.Windows.Forms.TextBox();
             this.listBoxResult = new System.Windows.Forms.ListBox();
             this.textButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // loadupFileButton
@@ -154,10 +158,10 @@
             // 
             this.listBoxResult.FormattingEnabled = true;
             this.listBoxResult.ItemHeight = 25;
-            this.listBoxResult.Location = new System.Drawing.Point(38, 371);
+            this.listBoxResult.Location = new System.Drawing.Point(38, 475);
             this.listBoxResult.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxResult.Name = "listBoxResult";
-            this.listBoxResult.Size = new System.Drawing.Size(1060, 304);
+            this.listBoxResult.Size = new System.Drawing.Size(1060, 254);
             this.listBoxResult.TabIndex = 11;
             // 
             // textButton
@@ -171,12 +175,57 @@
             this.textButton.UseVisualStyleBackColor = true;
             this.textButton.Click += new System.EventHandler(this.textButton_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label6.Location = new System.Drawing.Point(32, 343);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(153, 25);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Модификация";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(38, 383);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(378, 29);
+            this.checkBox1.TabIndex = 14;
+            this.checkBox1.Text = "Искать расстояние Левенштейна";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(576, 421);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox4.Size = new System.Drawing.Size(189, 31);
+            this.textBox4.TabIndex = 16;
+            this.textBox4.Text = "0";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(32, 427);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(526, 25);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Максимальное расстояние (необязательное поле):";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1138, 892);
+            this.ClientSize = new System.Drawing.Size(1138, 764);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.textButton);
             this.Controls.Add(this.listBoxResult);
             this.Controls.Add(this.label5);
@@ -193,6 +242,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Чтение файла, поиск слов";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,6 +263,10 @@
         private System.Windows.Forms.TextBox textBoxExactTime;
         private System.Windows.Forms.ListBox listBoxResult;
         private System.Windows.Forms.Button textButton;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label7;
     }
 }
 

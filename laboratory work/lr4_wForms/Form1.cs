@@ -58,62 +58,93 @@ namespace lr4_wForms
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            string searchingWord = this.searchWord.Text.Trim();
+            string searchingWord = this.searchWord.Text.Trim(); //получаем текст
 
             if(WordList.Count > 0 && !string.IsNullOrWhiteSpace(searchingWord))
             {
-                // для поиска в верхнем регистре
-                string wordUpper = searchingWord.ToUpper();
-
-                // временные результаты поиска
-                List<string> tempList = new List<string>();
-
-                Stopwatch time = new Stopwatch();
-                time.Start();
-
-                foreach (string str in WordList)
+                if(this.checkBox1.Checked == true)
                 {
-                    if (str.ToUpper().Contains(wordUpper))
+
+                }
+                else
+                {
+                    // для поиска в верхнем регистре
+                    string wordUpper = searchingWord.ToUpper();
+
+                    // временные результаты поиска
+                    List<string> tempList = new List<string>();
+
+                    Stopwatch time = new Stopwatch();
+                    time.Start();
+
+                    foreach (string str in WordList)
                     {
-                        tempList.Add(str);
+                        if (str.ToUpper().Contains(wordUpper))
+                        {
+                            tempList.Add(str);
+                        }
                     }
+
+                    time.Stop();
+                    this.textBoxExactTime.Text = time.Elapsed.ToString();
+
+                    this.listBoxResult.BeginUpdate();
+
+                    // отчистка listBox
+                    this.listBoxResult.Items.Clear();
+
+                    // вывод найденного слова 
+                    foreach (string str in tempList)
+                    {
+                        string massege = "Найденное слово: ";
+                        this.listBoxResult.Items.Add(massege + str);
+                    }
+                    this.listBoxResult.EndUpdate();
+
+                    if (tempList.Count == 0)
+                    {
+                        string massege = ":/ искомого слова в тексте нет :/";
+                        this.listBoxResult.Items.Add(massege);
+                    }
+                    
                 }
-
-                time.Stop();
-                this.textBoxExactTime.Text = time.Elapsed.ToString();
-
-                this.listBoxResult.BeginUpdate();
-
-                // отчистка listBox
-                this.listBoxResult.Items.Clear();
-
-                // вывод найденного слова 
-                foreach (string str in tempList)
-                {
-                    string massege = "Найденное слово: ";
-                    this.listBoxResult.Items.Add(massege+str);
-                }
-                this.listBoxResult.EndUpdate();
                 
-                if(tempList.Count == 0)
-                {
-                    string massege = ":/ искомого слова в тексте нет :/";
-                    this.listBoxResult.Items.Add(massege);
-                }
             }
             else
             {
                 MessageBox.Show("Необходимо выбрать файл и ввести слово для поиска");
             }
 
+
         }
 
         private void textButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                text,
-                "Текст из файла"
-            );
+            if (text != null)
+            {
+                MessageBox.Show(
+                  text,
+                  "Текст из файла"
+                );
+            }
+            else
+            {
+                
+                MessageBox.Show(
+                  "Вы не выбрали файл",
+                  "Текст из файла"
+                );
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
