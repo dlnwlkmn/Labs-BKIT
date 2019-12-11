@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>lr4_wForms</RootNamespace>
     <AssemblyName>lr4_wForms</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -81,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lr5_ClassLib\lr5_ClassLib.csproj">
+      <Project>{c6789fa1-343d-4309-9f24-3b253ff3e47d}</Project>
+      <Name>lr5_ClassLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

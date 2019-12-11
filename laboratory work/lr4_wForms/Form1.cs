@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using lr5_ClassLib;
 
 namespace lr4_wForms
 {
@@ -62,11 +63,61 @@ namespace lr4_wForms
 
             if(WordList.Count > 0 && !string.IsNullOrWhiteSpace(searchingWord))
             {
-                if(this.checkBox1.Checked == true)
+                if(this.checkBox1.Checked == true) // Если стоит галочка (Задание ЛР5)
                 {
+                    string originStr = this.searchWord.Text.Trim();
+                    int maxDist = int.Parse(this.textBox4.Text.Trim());
+                    int digit = 1000; // условно 1000 (не может же быть слова из 1000 букв :) )
+                    int i = 0, j = 0;
+                    Stopwatch time = new Stopwatch();
+                    time.Start();
+
+                    foreach (string str in WordList)
+                    {
+                        int digitTemp = LevDistance.Distance(originStr, str);
+                        if (digitTemp < digit)
+                        {
+                            digit = digitTemp;
+                            i = j; //запонимаем индекс слова в списке, имеющего на данный момент наименьшее расстоятние Л.
+                        }
+                        j++;
+                    }
+
+                    time.Stop();
+                    this.textBoxExactTime.Text = time.Elapsed.ToString();
+
+                    this.listBoxResult.BeginUpdate();
+
+                    this.listBoxResult.Items.Clear();
+
+
+                    if (digit == -1)
+                        this.listBoxResult.Items.Add("Пустые строки... Введите слово (текст)");
+                    else if (maxDist != 0) // Если пользователь ввел интересующее его расстояние Левенштейна
+                    {
+                        if (digit <= maxDist)
+                        {
+                            this.listBoxResult.Items.Add("Найденое слово: " + WordList[i]);
+                            this.listBoxResult.Items.Add("Слова можно считать совпадающими");
+                            this.listBoxResult.Items.Add("Расстояние Левенштейна: " + digit + " <= " + maxDist);
+                        }
+                        if (digit > maxDist)
+                        {
+                            this.listBoxResult.Items.Add("Слово '" + originStr + "' в тексте не найдено");
+                            this.listBoxResult.Items.Add("Не одно слово из текста не совпало с искомым");
+                            this.listBoxResult.Items.Add("Расстояние Левенштейна: " + digit + " > " + maxDist);
+                        }
+                    }
+                    else // если растояние Левенштейна пользователем не указано ( находим слово с наименьшим расстоянием Левенштейна )
+                    {
+                        this.listBoxResult.Items.Add("Найденое слово: " + WordList[i]);
+                        this.listBoxResult.Items.Add("Расстояние Левенштейна: " + digit);
+                    }
+
+                    this.listBoxResult.EndUpdate();
 
                 }
-                else
+                else // если галочка не стоит (Задание ЛР4)
                 {
                     // для поиска в верхнем регистре
                     string wordUpper = searchingWord.ToUpper();
@@ -76,7 +127,6 @@ namespace lr4_wForms
 
                     Stopwatch time = new Stopwatch();
                     time.Start();
-
                     foreach (string str in WordList)
                     {
                         if (str.ToUpper().Contains(wordUpper))
