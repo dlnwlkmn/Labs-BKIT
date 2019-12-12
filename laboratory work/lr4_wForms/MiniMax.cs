@@ -11,7 +11,7 @@ namespace lr4_wForms
         public int Min { get; set; }
         public int Max { get; set; }
 
-        public MinMax(int pmin, int pmax)
+        public MiniMax(int pmin, int pmax)
         {
             this.Min = pmin;
             this.Max = pmax;

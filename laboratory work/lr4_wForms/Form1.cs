@@ -201,7 +201,7 @@ namespace lr4_wForms
             foreach (string str in param.tempList)
             {
                 //Вычисление расстояния Дамерау-Левенштейна
-                int dist = EditDistance.Distance(str.ToUpper(), wordUpper);
+                int dist = DistanceEditing.Distance(str.ToUpper(), wordUpper);
 
                 //Если расстояние меньше порогового, то слово добавляется в результат
                 if (dist <= param.maxDist)
@@ -281,10 +281,182 @@ namespace lr4_wForms
                     //Запуск потока
                     tasks[i].Start();
                 }
+
+                Task.WaitAll(tasks);
+
+                time.Stop();
+
+                //Объединение результатов
+                for (int i = 0; i < count; i++)
+                {
+                    Result.AddRange(tasks[i].Result);
+                }
+                //Конец поиска
+
+                time.Stop();
+
+                //Вывод результатов
+
+                this.textBox5.Text = time.Elapsed.ToString();
+
+                this.textBox3.Text = count.ToString();
+
+                this.listBoxResult.BeginUpdate();
+
+                this.listBoxResult.Items.Clear();
+
+                //Вывод результатов поиска 
+                foreach (var x in Result)
+                {
+                    string temp = x.word + "(расстояние=" + x.dist.ToString() + " поток=" + x.ThreadNum.ToString() + ")";
+                    this.listBoxResult.Items.Add(temp);
+                }
+
+                this.listBoxResult.EndUpdate();
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать файл и ввести слово для поиска");
             }
         }
 
-        private void button2_Click(object sender, EventArgs e) // Создание отчета
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Имя файла отчета
+            string TempReportFileName = "Report_" + DateTime.Now.ToString("dd_MM_yyyy_hhmmss");
+
+            if (this.checkBox2.Checked == true) //Отчет в формате html
+            {
+                //Диалог сохранения файла отчета
+                SaveFileDialog fd = new SaveFileDialog();
+                fd.FileName = TempReportFileName;
+                fd.DefaultExt = ".html";
+                fd.Filter = "HTML Reports|*.html";
+
+                if (fd.ShowDialog() == DialogResult.OK)
+                {
+                    string ReportFileName = fd.FileName;
+
+                    //Формирование отчета
+                    StringBuilder b = new StringBuilder();
+                    b.AppendLine("<html>");
+
+                    b.AppendLine("<head>");
+                    b.AppendLine("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>");
+                    b.AppendLine("<title>" + "Отчет: " + ReportFileName + "</title>");
+                    b.AppendLine("</head>");
+
+                    b.AppendLine("<body>");
+
+                    b.AppendLine("<h1>" + "Отчет: " + ReportFileName + "</h1>");
+                    b.AppendLine("<table border='1'>");
+
+                    b.AppendLine("<tr>");
+                    b.AppendLine("<td>Время чтения из файла</td>");
+                    b.AppendLine("<td>" + this.textBoxFileReadTime.Text + "</td>");
+                    b.AppendLine("</tr>");
+
+                    b.AppendLine("<tr>");
+                    b.AppendLine("<td>Количество уникальных слов в файле</td>");
+                    b.AppendLine("<td>" + this.textBoxFileReadCount.Text + "</td>");
+                    b.AppendLine("</tr>");
+
+                    b.AppendLine("<tr>");
+                    b.AppendLine("<td>Слово для поиска</td>");
+                    b.AppendLine("<td>" + this.searchWord.Text + "</td>");
+                    b.AppendLine("</tr>");
+
+                    b.AppendLine("<tr>");
+                    b.AppendLine("<td>Максимальное расстояние для нечеткого поиска</td>");
+                    b.AppendLine("<td>" + this.textBox1.Text + "</td>");
+                    b.AppendLine("</tr>");
+
+                    b.AppendLine("<tr>");
+                    b.AppendLine("<td>Время четкого поиска</td>");
+                    b.AppendLine("<td>" + this.textBoxExactTime.Text + "</td>");
+                    b.AppendLine("</tr>");
+
+                    b.AppendLine("<tr>");
+                    b.AppendLine("<td>Время нечеткого поиска</td>");
+                    b.AppendLine("<td>" + this.textBox5.Text + "</td>");
+                    b.AppendLine("</tr>");
+
+                    b.AppendLine("<tr valign='top'>");
+                    b.AppendLine("<td>Результаты поиска</td>");
+                    b.AppendLine("<td>");
+                    b.AppendLine("<ul>");
+
+                    foreach (var x in this.listBoxResult.Items)
+                    {
+                        b.AppendLine("<li>" + x.ToString() + "</li>");
+                    }
+
+                    b.AppendLine("</ul>");
+                    b.AppendLine("</td>");
+                    b.AppendLine("</tr>");
+
+                    b.AppendLine("</table>");
+
+                    b.AppendLine("</body>");
+                    b.AppendLine("</html>");
+
+                    //Сохранение файла
+                    File.AppendAllText(ReportFileName, b.ToString());
+
+                    MessageBox.Show("Отчет сформирован. Файл: " + ReportFileName);
+                }
+
+            }
+            if (this.checkBox3.Checked == true) // Отчет в формате txt
+            {
+                SaveFileDialog fd = new SaveFileDialog();
+                fd.FileName = TempReportFileName;
+                fd.DefaultExt = ".txt";
+                fd.Filter = "TXT Reports|*.txt";
+
+                if (fd.ShowDialog() == DialogResult.OK)
+                {
+                    string ReportFileName = fd.FileName;
+
+                    //Формирование отчета
+                    StringBuilder b = new StringBuilder();
+
+                    b.AppendLine("Отчет: " + ReportFileName + " ;");
+
+                    b.AppendLine("\nВремя чтения из файла: " + this.textBoxFileReadTime.Text + " ;");
+
+                    b.AppendLine("Количество уникальных слов в файле: " + this.textBoxFileReadCount.Text + " ;");
+
+                    b.AppendLine("Слово для поиска: " + this.searchWord.Text + " ;");
+
+                    b.AppendLine("Максимальное расстояние для нечеткого поиска: " + this.textBox1.Text + " ;");
+
+                    b.AppendLine("Время четкого поиска: " + this.textBoxExactTime.Text + " ;");
+
+                    b.AppendLine("Время нечеткого поиска: " + this.textBox5.Text + " ;");
+
+                    b.AppendLine("Результаты поиска: ");
+
+                    int i = 0;
+                    foreach (var x in this.listBoxResult.Items)
+                    {
+                        b.AppendLine((i + 1) + ") " + x.ToString());
+                        i++;
+                    }
+
+                    //Сохранение файла
+                    File.AppendAllText(ReportFileName, b.ToString());
+
+                    MessageBox.Show("Отчет сформирован. Файл: " + ReportFileName);
+                }
+            }
+        }
+    }
+}
+
+/*
+
+    private void button2_Click(object sender, EventArgs e) // Создание отчета
         {
             //Имя файла отчета
             string TempReportFileName = "Report_" + DateTime.Now.ToString("dd_MM_yyyy_hhmmss");
@@ -414,6 +586,4 @@ namespace lr4_wForms
                     MessageBox.Show("Отчет сформирован. Файл: " + ReportFileName);
                 }
             }
-        }
-    }
-}
+    */
