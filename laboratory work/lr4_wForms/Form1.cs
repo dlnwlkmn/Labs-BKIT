@@ -213,10 +213,19 @@ namespace lr4_wForms
                     MessageBox.Show("Необходимо указать количество потоков");
                     return;
                 }
+
+                Stopwatch time = new Stopwatch();
+                time.Start();
+
+
+                //Список результатов  
+                List<ResultsOfParallelSearch> Result = new List<ResultsOfParallelSearch>();
+
+                
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // Создание отчета
         {
             //Имя файла отчета
             string TempReportFileName = "Report_" + DateTime.Now.ToString("dd_MM_yyyy_hhmmss");
@@ -319,9 +328,7 @@ namespace lr4_wForms
 
                     b.AppendLine("Отчет: " + ReportFileName + " ;");
 
-                    b.AppendLine("Отчет: " + ReportFileName + " ;");
-
-                    b.AppendLine("Время чтения из файла: " + this.textBoxFileReadTime.Text + " ;");
+                    b.AppendLine("\nВремя чтения из файла: " + this.textBoxFileReadTime.Text + " ;");
 
                     b.AppendLine("Количество уникальных слов в файле: " + this.textBoxFileReadCount.Text + " ;");
 
@@ -339,6 +346,7 @@ namespace lr4_wForms
                     foreach (var x in this.listBoxResult.Items)
                     {
                         b.AppendLine((i+1) + ") " + x.ToString());
+                        i++;
                     }
 
                     //Сохранение файла
