@@ -187,6 +187,38 @@ namespace lr4_wForms
             }
         }
 
+        public static List<ResultsOfParallelSearch> ArrayThreadTask(object paramObj)
+        {
+            ParallelSearchThreadParam param = (ParallelSearchThreadParam)paramObj;
+
+            //Слово для поиска в верхнем регистре
+            string wordUpper = param.wordPattern.Trim().ToUpper();
+
+            //Результаты поиска в одном потоке
+            List<ResultsOfParallelSearch> Result = new List<ResultsOfParallelSearch>();
+
+            //Перебор всех слов во временном списке данного потока 
+            foreach (string str in param.tempList)
+            {
+                //Вычисление расстояния Дамерау-Левенштейна
+                int dist = EditDistance.Distance(str.ToUpper(), wordUpper);
+
+                //Если расстояние меньше порогового, то слово добавляется в результат
+                if (dist <= param.maxDist)
+                {
+                    ResultsOfParallelSearch temp = new ResultsOfParallelSearch()
+                    {
+                        word = str,
+                        dist = dist,
+                        ThreadNum = param.ThreadNum
+                    };
+
+                    Result.Add(temp);
+                }
+            }
+            return Result;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string searchingWord = this.searchWord.Text.Trim(); //получаем текст
@@ -221,7 +253,34 @@ namespace lr4_wForms
                 //Список результатов  
                 List<ResultsOfParallelSearch> Result = new List<ResultsOfParallelSearch>();
 
-                
+                //Деление списка на фрагменты для параллельного запуска в потоках
+                List<MiniMax> arrayDivList = SabsArrays.DivideSubArrays(0, WordList.Count, ThreadCount);
+                int count = arrayDivList.Count;
+
+                //Количество потоков соответствует количеству фрагментов массива
+                Task<List<ResultsOfParallelSearch>>[] tasks = new Task<List<ResultsOfParallelSearch>>[count];
+
+                //Запуск потоков
+                for (int i = 0; i < count; i++)
+                {
+                    //Создание временного списка, чтобы потоки не работали параллельно с одной коллекцией
+                    List<string> tempTaskList = WordList.GetRange(arrayDivList[i].Min, arrayDivList[i].Max - arrayDivList[i].Min);
+
+                    tasks[i] = new Task<List<ResultsOfParallelSearch>>(
+                        //Метод, который будет выполняться в потоке
+                        ArrayThreadTask,
+                        //Параметры потока 
+                        new ParallelSearchThreadParam()
+                        {
+                            tempList = tempTaskList,
+                            maxDist = maxDist,
+                            ThreadNum = i,
+                            wordPattern = searchingWord
+                        });
+
+                    //Запуск потока
+                    tasks[i].Start();
+                }
             }
         }
 
