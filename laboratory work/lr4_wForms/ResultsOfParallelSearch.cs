@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lr4_wForms
 {
-    class ResultsOfParallelSearch
+    public class ResultsOfParallelSearch
     {
         public string word { get; set; }
 
