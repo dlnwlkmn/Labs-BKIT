@@ -63,7 +63,7 @@ namespace lr4_wForms
 
             if(WordList.Count > 0 && !string.IsNullOrWhiteSpace(searchingWord))
             {
-                if(this.checkBox1.Checked == true) // Если стоит галочка (Задание ЛР5)
+                if(this.checkBoxLevDist.Checked == true) // Если стоит галочка (Задание ЛР5)
                 {
                     string originStr = this.searchWord.Text.Trim();
                     int maxDist = int.Parse(this.textBox4.Text.Trim());
@@ -219,7 +219,7 @@ namespace lr4_wForms
             return Result;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Параллельный поиск
         {
             string searchingWord = this.searchWord.Text.Trim(); //получаем текст
 
@@ -227,7 +227,7 @@ namespace lr4_wForms
             {
                 int maxDist;
 
-                if (!int.TryParse(this.textBox1.Text.Trim(), out maxDist))
+                if (!int.TryParse(this.MaxDistField.Text.Trim(), out maxDist))
                 {
                     MessageBox.Show("Необходимо указать максимальное расстояние");
                     return;
@@ -240,7 +240,7 @@ namespace lr4_wForms
                 }
 
                 int ThreadCount;
-                if (!int.TryParse(this.textBox2.Text.Trim(), out ThreadCount))
+                if (!int.TryParse(this.TreadsQuant.Text.Trim(), out ThreadCount))
                 {
                     MessageBox.Show("Необходимо указать количество потоков");
                     return;
@@ -297,9 +297,9 @@ namespace lr4_wForms
 
                 //Вывод результатов
 
-                this.textBox5.Text = time.Elapsed.ToString();
+                this.TimeOfParallelSearch.Text = time.Elapsed.ToString();
 
-                this.textBox3.Text = count.ToString();
+                this.FoundTreads.Text = count.ToString();
 
                 this.listBoxResult.BeginUpdate();
 
@@ -308,8 +308,10 @@ namespace lr4_wForms
                 //Вывод результатов поиска 
                 foreach (var x in Result)
                 {
-                    string temp = x.word + "(расстояние=" + x.dist.ToString() + " поток=" + x.ThreadNum.ToString() + ")";
+                    string temp = "Найденое слово: " + x.word;
                     this.listBoxResult.Items.Add(temp);
+                    this.listBoxResult.Items.Add("Расстояние Левенштейна: " + x.dist.ToString());
+                    this.listBoxResult.Items.Add("Поток(-ов): " + x.ThreadNum.ToString());
                 }
 
                 this.listBoxResult.EndUpdate();
@@ -320,12 +322,12 @@ namespace lr4_wForms
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //Печать отчета
         {
             //Имя файла отчета
             string TempReportFileName = "Report_" + DateTime.Now.ToString("dd_MM_yyyy_hhmmss");
 
-            if (this.checkBox2.Checked == true) //Отчет в формате html
+            if (this.checkBoxHtml.Checked == true) //Отчет в формате html
             {
                 //Диалог сохранения файла отчета
                 SaveFileDialog fd = new SaveFileDialog();
@@ -368,7 +370,7 @@ namespace lr4_wForms
 
                     b.AppendLine("<tr>");
                     b.AppendLine("<td>Максимальное расстояние для нечеткого поиска</td>");
-                    b.AppendLine("<td>" + this.textBox1.Text + "</td>");
+                    b.AppendLine("<td>" + this.MaxDistField.Text + "</td>");
                     b.AppendLine("</tr>");
 
                     b.AppendLine("<tr>");
@@ -378,7 +380,7 @@ namespace lr4_wForms
 
                     b.AppendLine("<tr>");
                     b.AppendLine("<td>Время нечеткого поиска</td>");
-                    b.AppendLine("<td>" + this.textBox5.Text + "</td>");
+                    b.AppendLine("<td>" + this.TimeOfParallelSearch.Text + "</td>");
                     b.AppendLine("</tr>");
 
                     b.AppendLine("<tr valign='top'>");
@@ -407,7 +409,7 @@ namespace lr4_wForms
                 }
 
             }
-            if (this.checkBox3.Checked == true) // Отчет в формате txt
+            if (this.checkBoxTxt.Checked == true) // Отчет в формате txt
             {
                 SaveFileDialog fd = new SaveFileDialog();
                 fd.FileName = TempReportFileName;
@@ -429,11 +431,11 @@ namespace lr4_wForms
 
                     b.AppendLine("Слово для поиска: " + this.searchWord.Text + " ;");
 
-                    b.AppendLine("Максимальное расстояние для нечеткого поиска: " + this.textBox1.Text + " ;");
+                    b.AppendLine("Максимальное расстояние для нечеткого поиска: " + this.MaxDistField.Text + " ;");
 
                     b.AppendLine("Время четкого поиска: " + this.textBoxExactTime.Text + " ;");
 
-                    b.AppendLine("Время нечеткого поиска: " + this.textBox5.Text + " ;");
+                    b.AppendLine("Время нечеткого поиска: " + this.TimeOfParallelSearch.Text + " ;");
 
                     b.AppendLine("Результаты поиска: ");
 
@@ -453,137 +455,3 @@ namespace lr4_wForms
         }
     }
 }
-
-/*
-
-    private void button2_Click(object sender, EventArgs e) // Создание отчета
-        {
-            //Имя файла отчета
-            string TempReportFileName = "Report_" + DateTime.Now.ToString("dd_MM_yyyy_hhmmss");
-
-            if (this.checkBox2.Checked == true) //Отчет в формате html
-            {
-                //Диалог сохранения файла отчета
-                SaveFileDialog fd = new SaveFileDialog();
-                fd.FileName = TempReportFileName;
-                fd.DefaultExt = ".html";
-                fd.Filter = "HTML Reports|*.html";
-
-                if (fd.ShowDialog() == DialogResult.OK)
-                {
-                    string ReportFileName = fd.FileName;
-
-                    //Формирование отчета
-                    StringBuilder b = new StringBuilder();
-                    b.AppendLine("<html>");
-
-                    b.AppendLine("<head>");
-                    b.AppendLine("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>");
-                    b.AppendLine("<title>" + "Отчет: " + ReportFileName + "</title>");
-                    b.AppendLine("</head>");
-
-                    b.AppendLine("<body>");
-
-                    b.AppendLine("<h1>" + "Отчет: " + ReportFileName + "</h1>");
-                    b.AppendLine("<table border='1'>");
-
-                    b.AppendLine("<tr>");
-                    b.AppendLine("<td>Время чтения из файла</td>");
-                    b.AppendLine("<td>" + this.textBoxFileReadTime.Text + "</td>");
-                    b.AppendLine("</tr>");
-
-                    b.AppendLine("<tr>");
-                    b.AppendLine("<td>Количество уникальных слов в файле</td>");
-                    b.AppendLine("<td>" + this.textBoxFileReadCount.Text + "</td>");
-                    b.AppendLine("</tr>");
-
-                    b.AppendLine("<tr>");
-                    b.AppendLine("<td>Слово для поиска</td>");
-                    b.AppendLine("<td>" + this.searchWord.Text + "</td>");
-                    b.AppendLine("</tr>");
-
-                    b.AppendLine("<tr>");
-                    b.AppendLine("<td>Максимальное расстояние для нечеткого поиска</td>");
-                    b.AppendLine("<td>" + this.textBox1.Text + "</td>");
-                    b.AppendLine("</tr>");
-
-                    b.AppendLine("<tr>");
-                    b.AppendLine("<td>Время четкого поиска</td>");
-                    b.AppendLine("<td>" + this.textBoxExactTime.Text + "</td>");
-                    b.AppendLine("</tr>");
-
-                    b.AppendLine("<tr>");
-                    b.AppendLine("<td>Время нечеткого поиска</td>");
-                    b.AppendLine("<td>" + this.textBox5.Text + "</td>");
-                    b.AppendLine("</tr>");
-
-                    b.AppendLine("<tr valign='top'>");
-                    b.AppendLine("<td>Результаты поиска</td>");
-                    b.AppendLine("<td>");
-                    b.AppendLine("<ul>");
-
-                    foreach (var x in this.listBoxResult.Items)
-                    {
-                        b.AppendLine("<li>" + x.ToString() + "</li>");
-                    }
-
-                    b.AppendLine("</ul>");
-                    b.AppendLine("</td>");
-                    b.AppendLine("</tr>");
-
-                    b.AppendLine("</table>");
-
-                    b.AppendLine("</body>");
-                    b.AppendLine("</html>");
-
-                    //Сохранение файла
-                    File.AppendAllText(ReportFileName, b.ToString());
-
-                    MessageBox.Show("Отчет сформирован. Файл: " + ReportFileName);
-                }
-                
-            }
-            if (this.checkBox3.Checked == true) // Отчет в формате txt
-            {
-                SaveFileDialog fd = new SaveFileDialog();
-                fd.FileName = TempReportFileName;
-                fd.DefaultExt = ".txt";
-                fd.Filter = "TXT Reports|*.txt";
-
-                if (fd.ShowDialog() == DialogResult.OK)
-                {
-                    string ReportFileName = fd.FileName;
-
-                    //Формирование отчета
-                    StringBuilder b = new StringBuilder();
-
-                    b.AppendLine("Отчет: " + ReportFileName + " ;");
-
-                    b.AppendLine("\nВремя чтения из файла: " + this.textBoxFileReadTime.Text + " ;");
-
-                    b.AppendLine("Количество уникальных слов в файле: " + this.textBoxFileReadCount.Text + " ;");
-
-                    b.AppendLine("Слово для поиска: " + this.searchWord.Text + " ;");
-
-                    b.AppendLine("Максимальное расстояние для нечеткого поиска: " + this.textBox1.Text + " ;");
-
-                    b.AppendLine("Время четкого поиска: " + this.textBoxExactTime.Text + " ;");
-
-                    b.AppendLine("Время нечеткого поиска: " + this.textBox5.Text + " ;");
-
-                    b.AppendLine("Результаты поиска: ");
-
-                    int i = 0;
-                    foreach (var x in this.listBoxResult.Items)
-                    {
-                        b.AppendLine((i+1) + ") " + x.ToString());
-                        i++;
-                    }
-
-                    //Сохранение файла
-                    File.AppendAllText(ReportFileName, b.ToString());
-
-                    MessageBox.Show("Отчет сформирован. Файл: " + ReportFileName);
-                }
-            }
-    */

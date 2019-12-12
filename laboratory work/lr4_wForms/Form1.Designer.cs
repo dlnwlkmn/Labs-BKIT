@@ -42,27 +42,28 @@
             this.listBoxResult = new System.Windows.Forms.ListBox();
             this.textButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxLevDist = new System.Windows.Forms.CheckBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.MaxDistField = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TreadsQuant = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.ParallelSearchButton = new System.Windows.Forms.Button();
+            this.FoundTreads = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.TimeOfParallelSearch = new System.Windows.Forms.TextBox();
+            this.SaveReport = new System.Windows.Forms.Button();
+            this.checkBoxHtml = new System.Windows.Forms.CheckBox();
+            this.checkBoxTxt = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // loadupFileButton
             // 
-            this.loadupFileButton.Location = new System.Drawing.Point(324, 33);
+            this.loadupFileButton.Location = new System.Drawing.Point(417, 33);
             this.loadupFileButton.Margin = new System.Windows.Forms.Padding(4);
             this.loadupFileButton.Name = "loadupFileButton";
             this.loadupFileButton.Size = new System.Drawing.Size(108, 46);
@@ -74,10 +75,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(32, 42);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(285, 25);
+            this.label1.Size = new System.Drawing.Size(309, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Выберите файл для чтения";
             // 
@@ -122,10 +124,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(32, 224);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(256, 25);
+            this.label4.Size = new System.Drawing.Size(278, 25);
             this.label4.TabIndex = 6;
             this.label4.Text = "Введите искомое слово:";
             // 
@@ -199,15 +202,15 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Модификация";
             // 
-            // checkBox1
+            // checkBoxLevDist
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(38, 351);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(378, 29);
-            this.checkBox1.TabIndex = 14;
-            this.checkBox1.Text = "Искать расстояние Левенштейна";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxLevDist.AutoSize = true;
+            this.checkBoxLevDist.Location = new System.Drawing.Point(38, 351);
+            this.checkBoxLevDist.Name = "checkBoxLevDist";
+            this.checkBoxLevDist.Size = new System.Drawing.Size(416, 29);
+            this.checkBoxLevDist.TabIndex = 14;
+            this.checkBoxLevDist.Text = "Вычислить расстояние Левенштейна";
+            this.checkBoxLevDist.UseVisualStyleBackColor = true;
             // 
             // textBox4
             // 
@@ -239,14 +242,14 @@
             this.label8.TabIndex = 17;
             this.label8.Text = "Паралельный поиск";
             // 
-            // textBox1
+            // MaxDistField
             // 
-            this.textBox1.Location = new System.Drawing.Point(576, 470);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox1.Size = new System.Drawing.Size(189, 31);
-            this.textBox1.TabIndex = 19;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MaxDistField.Location = new System.Drawing.Point(576, 470);
+            this.MaxDistField.Name = "MaxDistField";
+            this.MaxDistField.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.MaxDistField.Size = new System.Drawing.Size(189, 31);
+            this.MaxDistField.TabIndex = 19;
+            this.MaxDistField.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
             // 
@@ -257,15 +260,15 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Максимальное расстояние (обязательное поле):";
             // 
-            // textBox2
+            // TreadsQuant
             // 
-            this.textBox2.Location = new System.Drawing.Point(270, 526);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox2.Size = new System.Drawing.Size(104, 31);
-            this.textBox2.TabIndex = 21;
-            this.textBox2.Text = "10";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TreadsQuant.Location = new System.Drawing.Point(270, 526);
+            this.TreadsQuant.Name = "TreadsQuant";
+            this.TreadsQuant.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TreadsQuant.Size = new System.Drawing.Size(104, 31);
+            this.TreadsQuant.TabIndex = 21;
+            this.TreadsQuant.Text = "10";
+            this.TreadsQuant.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label10
             // 
@@ -276,26 +279,26 @@
             this.label10.TabIndex = 20;
             this.label10.Text = "Количество потоков:";
             // 
-            // button1
+            // ParallelSearchButton
             // 
-            this.button1.Location = new System.Drawing.Point(829, 463);
-            this.button1.Margin = new System.Windows.Forms.Padding(6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(253, 44);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Параллельный поиск";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ParallelSearchButton.Location = new System.Drawing.Point(829, 463);
+            this.ParallelSearchButton.Margin = new System.Windows.Forms.Padding(6);
+            this.ParallelSearchButton.Name = "ParallelSearchButton";
+            this.ParallelSearchButton.Size = new System.Drawing.Size(253, 44);
+            this.ParallelSearchButton.TabIndex = 22;
+            this.ParallelSearchButton.Text = "Параллельный поиск";
+            this.ParallelSearchButton.UseVisualStyleBackColor = true;
+            this.ParallelSearchButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox3
+            // FoundTreads
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox3.Location = new System.Drawing.Point(780, 526);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox3.Size = new System.Drawing.Size(317, 31);
-            this.textBox3.TabIndex = 24;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.FoundTreads.BackColor = System.Drawing.SystemColors.Info;
+            this.FoundTreads.Location = new System.Drawing.Point(780, 526);
+            this.FoundTreads.Name = "FoundTreads";
+            this.FoundTreads.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.FoundTreads.Size = new System.Drawing.Size(317, 31);
+            this.FoundTreads.TabIndex = 24;
+            this.FoundTreads.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
@@ -316,45 +319,54 @@
             this.label12.TabIndex = 26;
             this.label12.Text = "Время параллельного поиска:";
             // 
-            // textBox5
+            // TimeOfParallelSearch
             // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox5.Location = new System.Drawing.Point(421, 575);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(678, 31);
-            this.textBox5.TabIndex = 25;
+            this.TimeOfParallelSearch.BackColor = System.Drawing.SystemColors.Info;
+            this.TimeOfParallelSearch.Location = new System.Drawing.Point(421, 575);
+            this.TimeOfParallelSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.TimeOfParallelSearch.Name = "TimeOfParallelSearch";
+            this.TimeOfParallelSearch.Size = new System.Drawing.Size(678, 31);
+            this.TimeOfParallelSearch.TabIndex = 25;
             // 
-            // button2
+            // SaveReport
             // 
-            this.button2.Location = new System.Drawing.Point(38, 898);
-            this.button2.Margin = new System.Windows.Forms.Padding(6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(253, 44);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "Сохранить отчет";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.SaveReport.Location = new System.Drawing.Point(846, 900);
+            this.SaveReport.Margin = new System.Windows.Forms.Padding(6);
+            this.SaveReport.Name = "SaveReport";
+            this.SaveReport.Size = new System.Drawing.Size(253, 44);
+            this.SaveReport.TabIndex = 27;
+            this.SaveReport.Text = "Сохранить отчет";
+            this.SaveReport.UseVisualStyleBackColor = true;
+            this.SaveReport.Click += new System.EventHandler(this.button2_Click);
             // 
-            // checkBox2
+            // checkBoxHtml
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(324, 907);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(90, 29);
-            this.checkBox2.TabIndex = 29;
-            this.checkBox2.Text = ".html";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxHtml.AutoSize = true;
+            this.checkBoxHtml.Location = new System.Drawing.Point(747, 907);
+            this.checkBoxHtml.Name = "checkBoxHtml";
+            this.checkBoxHtml.Size = new System.Drawing.Size(90, 29);
+            this.checkBoxHtml.TabIndex = 29;
+            this.checkBoxHtml.Text = ".html";
+            this.checkBoxHtml.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // checkBoxTxt
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(421, 907);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(73, 29);
-            this.checkBox3.TabIndex = 30;
-            this.checkBox3.Text = ".txt";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBoxTxt.AutoSize = true;
+            this.checkBoxTxt.Location = new System.Drawing.Point(663, 907);
+            this.checkBoxTxt.Name = "checkBoxTxt";
+            this.checkBoxTxt.Size = new System.Drawing.Size(73, 29);
+            this.checkBoxTxt.TabIndex = 30;
+            this.checkBoxTxt.Text = ".txt";
+            this.checkBoxTxt.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(393, 907);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(247, 25);
+            this.label13.TabIndex = 31;
+            this.label13.Text = "Выбирите расширение:";
             // 
             // Form1
             // 
@@ -363,22 +375,23 @@
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1138, 959);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.checkBoxTxt);
+            this.Controls.Add(this.checkBoxHtml);
+            this.Controls.Add(this.SaveReport);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.TimeOfParallelSearch);
+            this.Controls.Add(this.FoundTreads);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.ParallelSearchButton);
+            this.Controls.Add(this.TreadsQuant);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.MaxDistField);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxLevDist);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textButton);
             this.Controls.Add(this.listBoxResult);
@@ -418,22 +431,23 @@
         private System.Windows.Forms.ListBox listBoxResult;
         private System.Windows.Forms.Button textButton;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxLevDist;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox MaxDistField;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TreadsQuant;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button ParallelSearchButton;
+        private System.Windows.Forms.TextBox FoundTreads;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.TextBox TimeOfParallelSearch;
+        private System.Windows.Forms.Button SaveReport;
+        private System.Windows.Forms.CheckBox checkBoxHtml;
+        private System.Windows.Forms.CheckBox checkBoxTxt;
+        private System.Windows.Forms.Label label13;
     }
 }
 
