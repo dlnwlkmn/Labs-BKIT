@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lr2", "lr2\lr2.csproj", "{5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lr3", "lr3\lr3.csproj", "{3A0DA2A0-B232-443A-893C-BB78250418C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lr4_wForms", "lr4_wForms\lr4_wForms.csproj", "{F24E1D8B-AA3E-4EBF-A3D0-CCD14DA44391}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lr4_(modLr5)(modDZ)", "lr4_wForms\lr4_(modLr5)(modDZ).csproj", "{F24E1D8B-AA3E-4EBF-A3D0-CCD14DA44391}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lr6_part1", "lr6_part1\lr6_part1.csproj", "{E72B8357-8378-4A8B-B284-5C59E154827F}"
 EndProject
